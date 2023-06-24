@@ -90,6 +90,10 @@ function animate() {
     player.velocity.x = -1;
   } else if (keys.d.pressed) {
     player.velocity.x = 1;
+  } else if (!keys.a.pressed) {
+    player.velocity.x = 0;
+  } else if (!keys.d.pressed) {
+    player.velocity.x = 0;
   }
 
   player.update();
@@ -119,11 +123,9 @@ window.addEventListener("keyup", (e) => {
   switch (e.key) {
     case "d":
       keys.d.pressed = false;
-      player.velocity.x = 0;
       break;
     case "a":
       keys.a.pressed = false;
-      player.velocity.x = 0;
       break;
     case "w":
       break;
