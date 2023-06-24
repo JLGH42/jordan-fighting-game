@@ -32,4 +32,10 @@ const enemy = new Sprite({
 
 enemy.draw("blue");
 
+function animate () {
+    window.requestAnimationFrame(animate);
+}
+
+animate();
+
 console.log(player);
