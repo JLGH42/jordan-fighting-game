@@ -8,7 +8,8 @@ canvas.height = 576;
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 class Sprite {
-  constructor({ position, velocity }) {
+  constructor({ position, velocity, colour }) {
+    this.colour = colour;
     this.position = position;
     this.velocity = velocity;
   }
@@ -17,30 +18,43 @@ class Sprite {
     ctx.fillStyle = colour;
     ctx.fillRect(this.position.x, this.position.y, 50, 150);
   }
+
+  update() {
+    this.draw(this.colour);
+    this.position.y = this.position.y + this.velocity.y;
+  }
 }
 
 const player = new Sprite({
+  colour: "red",
   position: {
     x: 0,
     y: 0,
   },
-  velocity: 0,
+  velocity: {
+    x: 0,
+    y: 1.4,
+  },
 });
-
-player.draw("red");
 
 const enemy = new Sprite({
+  colour: "blue",
   position: {
     x: 975,
-    y: 100,
+    y: 0,
   },
-  velocity: 0,
+  velocity: {
+    x: 0,
+    y: 1.4,
+  },
 });
-
-enemy.draw("blue");
 
 function animate() {
   window.requestAnimationFrame(animate);
+  ctx.fillStyle = 'black';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  player.update();
+  enemy.update();
 }
 
 animate();
