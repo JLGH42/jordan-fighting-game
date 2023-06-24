@@ -8,8 +8,9 @@ canvas.height = 576;
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 class Sprite {
-  constructor(position) {
+  constructor({ position, velocity }) {
     this.position = position;
+    this.velocity = velocity;
   }
 
   draw(colour) {
@@ -19,21 +20,27 @@ class Sprite {
 }
 
 const player = new Sprite({
-  x: 0,
-  y: 0,
+  position: {
+    x: 0,
+    y: 0,
+  },
+  velocity: 0,
 });
 
 player.draw("red");
 
 const enemy = new Sprite({
-  x: 975,
-  y: 100,
+  position: {
+    x: 975,
+    y: 100,
+  },
+  velocity: 0,
 });
 
 enemy.draw("blue");
 
-function animate () {
-    window.requestAnimationFrame(animate);
+function animate() {
+  window.requestAnimationFrame(animate);
 }
 
 animate();
