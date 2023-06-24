@@ -25,13 +25,13 @@ class Sprite {
   update() {
     this.draw(this.colour);
     //velocity
+    this.position.x += this.velocity.x;
     this.position.y += this.velocity.y;
 
     //stopping object when it reaches the ground
     if (this.position.y + this.height + this.velocity.y >= canvas.height) {
       this.velocity.y = 0;
     }
-
     //gravity
     else {
       this.velocity.y += gravity;
@@ -77,4 +77,34 @@ function animate() {
 
 animate();
 
-console.log(player);
+window.addEventListener("keydown", (e) => {
+  // anytime you press down on a key, e is an object holding the key property
+  switch (e.key) {
+    case "d":
+      player.velocity.x = 1;
+      break;
+    case "a":
+      player.velocity.x = -1;
+      break;
+    case "w":
+      break;
+    case "s":
+      break;
+  }
+});
+
+window.addEventListener("keyup", (e) => {
+    // anytime you lift off of a key, e is an object holding the key property
+    switch (e.key) {
+      case "d":
+        player.velocity.x = 0;
+        break;
+      case "a":
+        player.velocity.x = 0;
+        break;
+      case "w":
+        break;
+      case "s":
+        break;
+    }
+  });
