@@ -28,6 +28,11 @@ class Sprite {
     this.position.x += this.velocity.x;
     this.position.y += this.velocity.y;
 
+    //wall detection
+    // if (this.position.y + this.height + this.velocity.y >= canvas.height) {
+    //     this.velocity.y = 0;
+    //   }
+
     //stopping object when it reaches the ground
     if (this.position.y + this.height + this.velocity.y >= canvas.height) {
       this.velocity.y = 0;
@@ -67,10 +72,26 @@ const enemy = new Sprite({
   },
 });
 
+const keys = {
+  a: {
+    pressed: false,
+  },
+  d: {
+    pressed: false,
+  },
+};
+
 function animate() {
   window.requestAnimationFrame(animate);
   ctx.fillStyle = "black";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  if (keys.a.pressed) {
+    player.velocity.x = -1;
+  } else if (keys.d.pressed) {
+    player.velocity.x = 1;
+  }
+
   player.update();
   enemy.update();
 }
@@ -81,10 +102,10 @@ window.addEventListener("keydown", (e) => {
   // anytime you press down on a key, e is an object holding the key property
   switch (e.key) {
     case "d":
-      player.velocity.x = 1;
+      keys.d.pressed = true;
       break;
     case "a":
-      player.velocity.x = -1;
+      keys.a.pressed = true;
       break;
     case "w":
       break;
@@ -94,17 +115,19 @@ window.addEventListener("keydown", (e) => {
 });
 
 window.addEventListener("keyup", (e) => {
-    // anytime you lift off of a key, e is an object holding the key property
-    switch (e.key) {
-      case "d":
-        player.velocity.x = 0;
-        break;
-      case "a":
-        player.velocity.x = 0;
-        break;
-      case "w":
-        break;
-      case "s":
-        break;
-    }
-  });
+  // anytime you lift off of a key, e is an object holding the key property
+  switch (e.key) {
+    case "d":
+      keys.d.pressed = false;
+      player.velocity.x = 0;
+      break;
+    case "a":
+      keys.a.pressed = false;
+      player.velocity.x = 0;
+      break;
+    case "w":
+      break;
+    case "s":
+      break;
+  }
+});
