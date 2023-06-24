@@ -81,6 +81,8 @@ const keys = {
   },
 };
 
+let lastKey;
+
 function animate() {
   window.requestAnimationFrame(animate);
   ctx.fillStyle = "black";
@@ -88,9 +90,9 @@ function animate() {
 
   player.velocity.x = 0;
 
-  if (keys.a.pressed) {
+  if (keys.a.pressed && lastKey === 'a') {
     player.velocity.x = -1;
-  } else if (keys.d.pressed) {
+  } else if (keys.d.pressed && lastKey === 'd') {
     player.velocity.x = 1;
   }
 
@@ -101,13 +103,16 @@ function animate() {
 animate();
 
 window.addEventListener("keydown", (e) => {
+    console.log(e.key)
   // anytime you press down on a key, e is an object holding the key property
   switch (e.key) {
     case "d":
       keys.d.pressed = true;
+      lastKey = "d"
       break;
     case "a":
       keys.a.pressed = true;
+      lastKey = "a"
       break;
     case "w":
       break;
