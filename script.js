@@ -16,11 +16,26 @@ class Sprite {
     this.height = height;
     this.width = width;
     this.lastKey;
+    this.attackBox = {
+      colour: "green",
+      position: this.position,
+      width: 100,
+      height: 50,
+    };
   }
 
   draw(colour) {
     ctx.fillStyle = colour;
     ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+
+    //attackBox
+    ctx.fillStyle = this.attackBox.colour;
+    ctx.fillRect(
+      this.attackBox.position.x,
+      this.attackBox.position.y,
+      this.attackBox.width,
+      this.attackBox.height
+    );
   }
 
   update() {
@@ -28,11 +43,6 @@ class Sprite {
     //velocity
     this.position.x += this.velocity.x;
     this.position.y += this.velocity.y;
-
-    //wall detection
-    // if (this.position.y + this.height + this.velocity.x >= canvas.width || 0) {
-    //     this.velocity.x = 0;
-    //   }
 
     //stopping object when it reaches the ground
     if (this.position.y + this.height + this.velocity.y >= canvas.height) {
@@ -64,7 +74,7 @@ const enemy = new Sprite({
   height: 150,
   width: 50,
   position: {
-    x: 975,
+    x: 900,
     y: 0,
   },
   velocity: {
