@@ -15,6 +15,7 @@ class Sprite {
     this.velocity = velocity;
     this.height = height;
     this.width = width;
+    this.lastKey;
   }
 
   draw(colour) {
@@ -79,6 +80,12 @@ const keys = {
   d: {
     pressed: false,
   },
+  arrowR: {
+    pressed: false,
+  },
+  arrowL: {
+    pressed: false,
+  },
 };
 
 let lastKey;
@@ -89,11 +96,20 @@ function animate() {
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   player.velocity.x = 0;
+  enemy.velocity.x = 0;
 
-  if (keys.a.pressed && lastKey === 'a') {
+  //player movement
+  if (keys.a.pressed && lastKey === "a") {
     player.velocity.x = -1;
-  } else if (keys.d.pressed && lastKey === 'd') {
+  } else if (keys.d.pressed && lastKey === "d") {
     player.velocity.x = 1;
+  }
+
+  //enemy movement
+  if (keys.arrowR.pressed && enemy.lastKey === "ArrowRight") {
+    enemy.velocity.x = 1;
+  } else if (keys.arrowL.pressed && enemy.lastKey === "ArrowLeft") {
+    enemy.velocity.x = -1;
   }
 
   player.update();
@@ -103,20 +119,30 @@ function animate() {
 animate();
 
 window.addEventListener("keydown", (e) => {
-    console.log(e.key)
+  console.log(e.key);
   // anytime you press down on a key, e is an object holding the key property
   switch (e.key) {
     case "d":
       keys.d.pressed = true;
-      lastKey = "d"
+      lastKey = "d";
       break;
     case "a":
       keys.a.pressed = true;
-      lastKey = "a"
+      lastKey = "a";
       break;
     case "w":
+      player.velocity.y = -10;
       break;
-    case "s":
+    case "ArrowRight":
+      keys.arrowR.pressed = true;
+      enemy.lastKey = "ArrowRight";
+      break;
+    case "ArrowLeft":
+      keys.arrowL.pressed = true;
+      enemy.lastKey = "ArrowLeft";
+      break;
+    case "ArrowUp":
+      enemy.velocity.y = -10;
       break;
   }
 });
@@ -130,9 +156,11 @@ window.addEventListener("keyup", (e) => {
     case "a":
       keys.a.pressed = false;
       break;
-    case "w":
+    case "ArrowRight":
+      keys.arrowR.pressed = false;
       break;
-    case "s":
+    case "ArrowLeft":
+      keys.arrowL.pressed = false;
       break;
   }
 });
