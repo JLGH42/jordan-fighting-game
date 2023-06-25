@@ -7,7 +7,7 @@ canvas.height = 576;
 
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-const gravity = 0.4;
+const gravity = 0.7;
 class Sprite {
   constructor({ position, velocity, colour, height, width }) {
     this.colour = colour;
@@ -30,8 +30,8 @@ class Sprite {
     this.position.y += this.velocity.y;
 
     //wall detection
-    // if (this.position.y + this.height + this.velocity.y >= canvas.height) {
-    //     this.velocity.y = 0;
+    // if (this.position.y + this.height + this.velocity.x >= canvas.width || 0) {
+    //     this.velocity.x = 0;
     //   }
 
     //stopping object when it reaches the ground
