@@ -30,13 +30,15 @@ class Sprite {
     ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
 
     //attackBox
-    ctx.fillStyle = this.attackBox.colour;
-    ctx.fillRect(
-      this.attackBox.position.x,
-      this.attackBox.position.y,
-      this.attackBox.width,
-      this.attackBox.height
-    );
+    if (this.isAttacking) {
+      ctx.fillStyle = this.attackBox.colour;
+      ctx.fillRect(
+        this.attackBox.position.x,
+        this.attackBox.position.y,
+        this.attackBox.width,
+        this.attackBox.height
+      );
+    }
   }
 
   update() {
@@ -127,8 +129,7 @@ function animate() {
     enemy.velocity.x = -5;
   }
 
-  //collision detection
-
+  //attack collision detection
   if (
     player.attackBox.position.x + player.attackBox.width >= enemy.position.x &&
     player.attackBox.position.x <= enemy.position.x + enemy.width &&
@@ -136,6 +137,7 @@ function animate() {
     player.attackBox.position.y <= enemy.position.y + enemy.height &&
     player.isAttacking
   ) {
+    player.isAttacking = false;
     console.log("attack");
   }
 
@@ -187,7 +189,7 @@ window.addEventListener("keyup", (e) => {
     case "a":
       keys.a.pressed = false;
       break;
-      
+
     case "ArrowRight":
       keys.arrowR.pressed = false;
       break;
