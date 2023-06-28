@@ -9,7 +9,7 @@ ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 const gravity = 0.7;
 class Sprite {
-  constructor({ position, velocity, colour, height, width }) {
+  constructor({ position, velocity, colour, height, width, isAttacking }) {
     this.colour = colour;
     this.position = position;
     this.velocity = velocity;
@@ -22,6 +22,7 @@ class Sprite {
       width: 100,
       height: 50,
     };
+    this.isAttacking = false;
   }
 
   draw(colour) {
@@ -52,6 +53,12 @@ class Sprite {
     else {
       this.velocity.y += gravity;
     }
+  }
+  attack() {
+    this.isAttacking = true;
+    setTimeout(() => {
+      this.isAttacking = false;
+    }, 100);
   }
 }
 
@@ -120,6 +127,18 @@ function animate() {
     enemy.velocity.x = -5;
   }
 
+  //collision detection
+
+  if (
+    player.attackBox.position.x + player.attackBox.width >= enemy.position.x &&
+    player.attackBox.position.x <= enemy.position.x + enemy.width &&
+    player.attackBox.position.y + player.attackBox.height >= enemy.position.y &&
+    player.attackBox.position.y <= enemy.position.y + enemy.height &&
+    player.isAttacking
+  ) {
+    console.log("attack");
+  }
+
   player.update();
   enemy.update();
 }
@@ -141,6 +160,10 @@ window.addEventListener("keydown", (e) => {
     case "w":
       player.velocity.y = -15;
       break;
+    case " ":
+      player.attack();
+      break;
+
     case "ArrowRight":
       keys.arrowR.pressed = true;
       enemy.lastKey = "ArrowRight";
@@ -164,6 +187,7 @@ window.addEventListener("keyup", (e) => {
     case "a":
       keys.a.pressed = false;
       break;
+      
     case "ArrowRight":
       keys.arrowR.pressed = false;
       break;
