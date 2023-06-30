@@ -9,7 +9,7 @@ ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 const gravity = 0.7;
 class Sprite {
-  constructor({ position, velocity, colour, height, width, isAttacking }) {
+  constructor({ position, velocity, colour, height, width, offset }) {
     this.colour = colour;
     this.position = position;
     this.velocity = velocity;
@@ -18,11 +18,15 @@ class Sprite {
     this.lastKey;
     this.attackBox = {
       colour: "green",
-      position: this.position,
+      position: {
+        x: this.position.x,
+        y: this.position.y,
+      },
+      offset,
       width: 100,
       height: 50,
     };
-    this.isAttacking = false;
+    this.isAttacking;
   }
 
   draw(colour) {
@@ -30,7 +34,7 @@ class Sprite {
     ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
 
     //attackBox
-    if (this.isAttacking) {
+    // if (this.isAttacking) {
       ctx.fillStyle = this.attackBox.colour;
       ctx.fillRect(
         this.attackBox.position.x,
@@ -38,11 +42,14 @@ class Sprite {
         this.attackBox.width,
         this.attackBox.height
       );
-    }
+    // }
   }
 
   update() {
     this.draw(this.colour);
+    this.attackBox.position.x = this.position.x - this.attackBox.offset.x;
+    this.attackBox.position.y = this.position.y;
+
     //velocity
     this.position.x += this.velocity.x;
     this.position.y += this.velocity.y;
@@ -76,6 +83,10 @@ const player = new Sprite({
     x: 0,
     y: 0,
   },
+  offset: {
+    x: 0,
+    y: 0,
+  }
 });
 
 const enemy = new Sprite({
@@ -90,6 +101,10 @@ const enemy = new Sprite({
     x: 0,
     y: 0,
   },
+  offset: {
+    x: 50,
+    y: 0,
+  }
 });
 
 const keys = {
