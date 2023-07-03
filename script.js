@@ -182,7 +182,6 @@ function animate() {
 animate();
 
 window.addEventListener("keydown", (e) => {
-  console.log(e.key);
   // anytime you press down on a key, e is an object holding the key property
   switch (e.key) {
     case "d":
@@ -194,7 +193,7 @@ window.addEventListener("keydown", (e) => {
       player.lastKey = "a";
       break;
     case "w":
-      player.velocity.y = -15;
+      player.velocity.y = -20;
       break;
     case " ":
       player.attack();
@@ -209,7 +208,7 @@ window.addEventListener("keydown", (e) => {
       enemy.lastKey = "ArrowLeft";
       break;
     case "ArrowUp":
-      enemy.velocity.y = -15;
+      enemy.velocity.y = -20;
       break;
     case "Shift":
       enemy.attack();
