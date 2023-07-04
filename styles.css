@@ -1,0 +1,30 @@
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  position: relative;
+}
+
+.wrapper {
+  position: absolute;
+  display: flex;
+}
+
+#player-1-health {
+  background-color: #ffff00;
+  height: 30px;
+  width: 100px;
+}
+
+#timer {
+  background: #ff0000;
+  height: 100px;
+  width: 100px;
+}
+
+#player-2-health {
+  background-color: #ffff00;
+  height: 30px;
+  width: 100px;
+}
