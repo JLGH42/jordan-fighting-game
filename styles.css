@@ -15,11 +15,9 @@
   padding: 20px;
 }
 
-#player-1-health,
-#player-2-health {
+.health-background {
   background: #ffff00;
   height: 30px;
-  width: 100%;
 }
 
 #timer {
@@ -27,4 +25,21 @@
   height: 100px;
   width: 100px;
   flex-shrink: 0;
+}
+
+#player-1-health {
+  height: 30px;
+  width: 100%;
+}
+
+.player-2-health-wrapper {
+  position: relative;
+  height: 30px;
+  width: 100%;
+}
+
+#player-2-health-bar {
+  position: absolute;
+  background: #0000ff;
+  inset: 0;
 }
