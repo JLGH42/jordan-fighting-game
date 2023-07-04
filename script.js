@@ -26,6 +26,7 @@ class Sprite {
       width: 100,
       height: 50,
     };
+    this.health = 100;
     this.isAttacking;
   }
 
@@ -166,7 +167,8 @@ function animate() {
     player.isAttacking
   ) {
     player.isAttacking = false;
-    document.getElementById('player-2-health-bar').style.width = '20%';
+    enemy.health -= 20;
+    document.getElementById("player-2-health-bar").style.width = enemy.health + '%';
   }
 
   //enemy attack collision
@@ -175,7 +177,7 @@ function animate() {
     enemy.isAttacking
   ) {
     enemy.isAttacking = false;
-    console.log("enemy attack");
+    // console.log("enemy attack");
   }
 }
 
