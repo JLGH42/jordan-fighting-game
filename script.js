@@ -166,7 +166,7 @@ function animate() {
     player.isAttacking
   ) {
     player.isAttacking = false;
-    console.log("player attack");
+    document.getElementById('player-2-health-bar').style.width = '20%';
   }
 
   //enemy attack collision
