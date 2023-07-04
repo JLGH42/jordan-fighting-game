@@ -4,15 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script defer src="/script.js"></script>
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/styles.css" />
     <title>Fighting Game</title>
   </head>
   <body>
     <div class="container">
       <div class="wrapper">
-        <div id="player-1-health"></div>
+        <div class="health-background" id="player-1-health"></div>
         <div id="timer"></div>
-        <div id="player-2-health"></div>
+        <div class="player-2-health-wrapper">
+          <div class="health-background"></div>
+          <div id="player-2-health-bar"></div>
+        </div>
       </div>
       <canvas></canvas>
     </div>
