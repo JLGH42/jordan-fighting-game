@@ -8,7 +8,7 @@ class Sprite {
   }
 
   draw() {
-    ctx.drawImage(this.image, this.position.x, this.position.y)
+    ctx.drawImage(this.image, this.position.x, this.position.y);
   }
 
   update() {
