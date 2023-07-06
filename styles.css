@@ -26,6 +26,10 @@
   height: 100px;
   width: 100px;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
 }
 
 .player-1-health-wrapper,
@@ -53,4 +57,13 @@
   bottom: 0;
   right: 0;
   width: 100%;
+}
+
+#condition {
+  position: absolute;
+  color: #fff;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  inset: 0;
 }
