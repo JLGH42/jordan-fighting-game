@@ -8,71 +8,8 @@ canvas.height = 576;
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 const gravity = 0.7;
-class Sprite {
-  constructor({ position, velocity, colour, height, width, offset }) {
-    this.colour = colour;
-    this.position = position;
-    this.velocity = velocity;
-    this.height = height;
-    this.width = width;
-    this.lastKey;
-    this.attackBox = {
-      colour: "green",
-      position: {
-        x: this.position.x,
-        y: this.position.y,
-      },
-      offset,
-      width: 100,
-      height: 50,
-    };
-    this.health = 100;
-    this.isAttacking;
-  }
 
-  draw(colour) {
-    ctx.fillStyle = colour;
-    ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
-
-    //attackBox
-    if (this.isAttacking) {
-      ctx.fillStyle = this.attackBox.colour;
-      ctx.fillRect(
-        this.attackBox.position.x,
-        this.attackBox.position.y,
-        this.attackBox.width,
-        this.attackBox.height
-      );
-    }
-  }
-
-  update() {
-    this.draw(this.colour);
-    this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
-    this.attackBox.position.y = this.position.y;
-
-    //velocity
-    this.position.x += this.velocity.x;
-    this.position.y += this.velocity.y;
-
-    //stopping object when it reaches the ground
-    if (this.position.y + this.height + this.velocity.y >= canvas.height) {
-      this.velocity.y = 0;
-    }
-    //gravity
-    else {
-      this.velocity.y += gravity;
-    }
-  }
-  attack() {
-    this.isAttacking = true;
-    setTimeout(() => {
-      this.isAttacking = false;
-    }, 100);
-  }
-}
-
-const player = new Sprite({
+const player = new Fighter({
   colour: "red",
   height: 150,
   width: 50,
@@ -90,7 +27,7 @@ const player = new Sprite({
   },
 });
 
-const enemy = new Sprite({
+const enemy = new Fighter({
   colour: "blue",
   height: 150,
   width: 50,
@@ -154,7 +91,7 @@ let timerId;
 const condition = document.getElementById("condition");
 function decreaseTimer() {
   if (timer > 0) {
-   timerId = setTimeout(decreaseTimer, 1000);
+    timerId = setTimeout(decreaseTimer, 1000);
     --timer;
     document.getElementById("timer").innerHTML = timer;
   }
@@ -190,7 +127,7 @@ function animate() {
     enemy.velocity.x = -5;
   }
 
-  //player attack collision detection
+  //player attack collision
   if (
     rectangularCollision({ rectangle1: player, rectangle2: enemy }) &&
     player.isAttacking
