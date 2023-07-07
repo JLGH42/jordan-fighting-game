@@ -15,6 +15,7 @@ const background = new Sprite({
     y: 0,
   },
   imageSrc: "./images/Background.png",
+  framesMax: 1,
 });
 
 const shop = new Sprite({
@@ -23,7 +24,8 @@ const shop = new Sprite({
     y: 227,
   },
   imageSrc: "./images/shop.png",
-  scale: 2.5
+  framesMax: 6,
+  scale: 2.5,
 });
 
 const player = new Fighter({
