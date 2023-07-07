@@ -8,6 +8,8 @@ class Sprite {
     this.scale = scale;
     this.framesMax = framesMax;
     this.framesCurrent = 0;
+    this.framesElapsed = 0;
+    this.framesHold = 13;
   }
 
   draw() {
@@ -28,10 +30,15 @@ class Sprite {
 
   update() {
     this.draw();
-    if (this.framesCurrent < this.framesMax - 1) {
-      this.framesCurrent++;
-    } else {
-      this.framesCurrent = 0;
+    this.framesElapsed++;
+
+    if (this.framesElapsed % this.framesHold === 0) {
+      //frameshift logic
+      if (this.framesCurrent < this.framesMax - 1) {
+        this.framesCurrent++;
+      } else {
+        this.framesCurrent = 0;
+      }
     }
   }
 }
