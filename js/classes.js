@@ -1,14 +1,21 @@
 class Sprite {
-  constructor({ position, height, width, imageSrc }) {
+  constructor({ position, height, width, imageSrc, scale = 1 }) {
     this.position = position;
     this.height = height;
     this.width = width;
     this.image = new Image();
     this.image.src = imageSrc;
+    this.scale = scale;
   }
 
   draw() {
-    ctx.drawImage(this.image, this.position.x, this.position.y);
+    ctx.drawImage(
+      this.image,
+      this.position.x,
+      this.position.y,
+      this.image.width * this.scale,
+      this.image.height * this.scale
+    );
   }
 
   update() {
