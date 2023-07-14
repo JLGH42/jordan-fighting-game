@@ -1,5 +1,15 @@
 class Sprite {
-  constructor({ position, height, width, imageSrc, scale = 1, framesMax }) {
+  constructor({
+    position,
+    height,
+    width,
+    imageSrc,
+    scale = 1,
+    framesMax = 1,
+    framesCurrent = 0,
+    framesElapsed = 0,
+    framesHold = 13,
+  }) {
     this.position = position;
     this.height = height;
     this.width = width;
@@ -7,9 +17,9 @@ class Sprite {
     this.image.src = imageSrc;
     this.scale = scale;
     this.framesMax = framesMax;
-    this.framesCurrent = 0;
-    this.framesElapsed = 0;
-    this.framesHold = 13;
+    this.framesCurrent = framesCurrent;
+    this.framesElapsed = framesElapsed;
+    this.framesHold = framesHold;
   }
 
   draw() {
@@ -43,10 +53,31 @@ class Sprite {
   }
 }
 
-class Fighter {
-  constructor({ position, velocity, colour, height, width, offset }) {
+class Fighter extends Sprite {
+  constructor({
+    position,
+    velocity,
+    colour,
+    height,
+    width,
+    offset,
+    imageSrc,
+    scale,
+    framesMax,
+    framesCurrent,
+    framesElapsed,
+    framesHold,
+  }) {
+    super({
+      imageSrc,
+      scale,
+      framesMax,
+      framesCurrent,
+      framesElapsed,
+      framesHold,
+      position,
+    });
     this.colour = colour;
-    this.position = position;
     this.velocity = velocity;
     this.height = height;
     this.width = width;
@@ -65,24 +96,8 @@ class Fighter {
     this.isAttacking;
   }
 
-  draw(colour) {
-    ctx.fillStyle = colour;
-    ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
-
-    //attackBox
-    if (this.isAttacking) {
-      ctx.fillStyle = this.attackBox.colour;
-      ctx.fillRect(
-        this.attackBox.position.x,
-        this.attackBox.position.y,
-        this.attackBox.width,
-        this.attackBox.height
-      );
-    }
-  }
-
   update() {
-    this.draw(this.colour);
+    this.draw();
     this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
     this.attackBox.position.y = this.position.y;
 
