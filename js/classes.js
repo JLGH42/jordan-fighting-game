@@ -9,6 +9,7 @@ class Sprite {
     framesCurrent = 0,
     framesElapsed = 0,
     framesHold = 13,
+    offset = { x: 0, y: 0 },
   }) {
     this.position = position;
     this.height = height;
@@ -20,26 +21,10 @@ class Sprite {
     this.framesCurrent = framesCurrent;
     this.framesElapsed = framesElapsed;
     this.framesHold = framesHold;
+    this.offset = offset;
   }
 
-  draw() {
-    ctx.drawImage(
-      this.image,
-      //cropping properties
-      this.framesCurrent * (this.image.width / this.framesMax),
-      0,
-      this.image.width / this.framesMax,
-      this.image.height,
-      //image rendering properties
-      this.position.x,
-      this.position.y,
-      (this.image.width / this.framesMax) * this.scale,
-      this.image.height * this.scale
-    );
-  }
-
-  update() {
-    this.draw();
+  animateFrames() {
     this.framesElapsed++;
 
     if (this.framesElapsed % this.framesHold === 0) {
@@ -51,6 +36,27 @@ class Sprite {
       }
     }
   }
+
+  draw() {
+    ctx.drawImage(
+      this.image,
+      //cropping properties
+      this.framesCurrent * (this.image.width / this.framesMax),
+      0,
+      this.image.width / this.framesMax,
+      this.image.height,
+      //image rendering properties
+      this.position.x - this.offset.x,
+      this.position.y - this.offset.y,
+      (this.image.width / this.framesMax) * this.scale,
+      this.image.height * this.scale
+    );
+  }
+
+  update() {
+    this.draw();
+    this.animateFrames();
+  }
 }
 
 class Fighter extends Sprite {
@@ -60,13 +66,13 @@ class Fighter extends Sprite {
     colour,
     height,
     width,
-    offset,
     imageSrc,
     scale,
     framesMax,
     framesCurrent,
     framesElapsed,
     framesHold,
+    offset,
   }) {
     super({
       imageSrc,
@@ -76,6 +82,7 @@ class Fighter extends Sprite {
       framesElapsed,
       framesHold,
       position,
+      offset,
     });
     this.colour = colour;
     this.velocity = velocity;
@@ -98,6 +105,7 @@ class Fighter extends Sprite {
 
   update() {
     this.draw();
+    this.animateFrames();
     this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
     this.attackBox.position.y = this.position.y;
 
@@ -106,7 +114,7 @@ class Fighter extends Sprite {
     this.position.y += this.velocity.y;
 
     //stopping object when it reaches the ground
-    if (this.position.y + this.height + this.velocity.y >= canvas.height - 30) {
+    if (this.position.y + this.height + this.velocity.y >= canvas.height) {
       this.velocity.y = 0;
     }
     //gravity
