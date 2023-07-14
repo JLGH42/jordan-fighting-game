@@ -29,7 +29,6 @@ const shop = new Sprite({
 });
 
 const player = new Fighter({
-  colour: "red",
   height: 150,
   width: 50,
   position: {
@@ -44,10 +43,14 @@ const player = new Fighter({
     x: 0,
     y: 0,
   },
+  imageSrc: "./images/MedievalKing/Sprites/Idle.png",
+  framesMax: 8,
+  framesHold: 5,
+  scale: 2.5,
+  offset: {x: 155, y: 143}
 });
 
 const enemy = new Fighter({
-  colour: "blue",
   height: 150,
   width: 50,
   position: {
@@ -88,7 +91,7 @@ function animate() {
   background.update();
   shop.update();
   player.update();
-  enemy.update();
+  // enemy.update();
 
   player.velocity.x = 0;
   enemy.velocity.x = 0;
@@ -135,7 +138,9 @@ function animate() {
   }
 }
 
-animate();
+window.onload = function () {
+  animate();
+};
 
 window.addEventListener("keydown", (e) => {
   // anytime you press down on a key, e is an object holding the key property
