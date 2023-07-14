@@ -47,7 +47,17 @@ const player = new Fighter({
   framesMax: 8,
   framesHold: 5,
   scale: 2.5,
-  offset: {x: 155, y: 143}
+  offset: { x: 155, y: 143 },
+  sprites: {
+    idle: {
+      imageSrc: "./images/MedievalKing/Sprites/Idle.png",
+      framesMax: 8
+    },
+    run: {
+      imageSrc: "./images/MedievalKing/Sprites/Run.png",
+      framesMax: 8
+    } 
+  }
 });
 
 const enemy = new Fighter({
@@ -99,8 +109,10 @@ function animate() {
   //player movement
   if (keys.a.pressed && player.lastKey === "a") {
     player.velocity.x = -5;
+    player.image = player.sprites.run.image
   } else if (keys.d.pressed && player.lastKey === "d") {
     player.velocity.x = 5;
+    player.image = player.sprites.run.image
   }
 
   //enemy movement
