@@ -73,6 +73,7 @@ class Fighter extends Sprite {
     framesElapsed,
     framesHold,
     offset,
+    sprites
   }) {
     super({
       imageSrc,
@@ -101,6 +102,12 @@ class Fighter extends Sprite {
     };
     this.health = 100;
     this.isAttacking;
+    this.sprites = sprites;
+
+    for (const sprite in this.sprites) {
+      this.sprites[sprite].image = new Image()
+      this.sprites[sprite].image.src = this.sprites[sprite].imageSrc
+    }
   }
 
   update() {
