@@ -75,6 +75,7 @@ class Fighter extends Sprite {
     offset,
     sprites,
     lastDirection,
+    attackBox = { offset: {}, width: undefined, height: undefined}
   }) {
     super({
       imageSrc,
@@ -92,14 +93,13 @@ class Fighter extends Sprite {
     this.width = width;
     this.lastKey;
     this.attackBox = {
-      colour: "green",
       position: {
         x: this.position.x,
         y: this.position.y,
       },
-      offset,
-      width: 100,
-      height: 50,
+      offset: attackBox.offset,
+      width: attackBox.width,
+      height: attackBox.height,
     };
     this.health = 100;
     this.isAttacking;
@@ -115,8 +115,11 @@ class Fighter extends Sprite {
   update() {
     this.draw();
     this.animateFrames();
+
     this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
     this.attackBox.position.y = this.position.y;
+
+    ctx.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height);
 
     //velocity
     this.position.x += this.velocity.x;
