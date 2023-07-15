@@ -39,10 +39,6 @@ const player = new Fighter({
     x: 0,
     y: 0,
   },
-  offset: {
-    x: 0,
-    y: 0,
-  },
   imageSrc: "./images/MedievalKing/Sprites/Idle.png",
   framesMax: 8,
   framesHold: 5,
@@ -87,9 +83,10 @@ const player = new Fighter({
     },
     attack1Left: {
       imageSrc: "./images/MedievalKing/Sprites/Attack1Left.png",
-      framesMax: 2,
+      framesMax: 4,
     },
   },
+  lastDirection: "right",
 });
 
 const enemy = new Fighter({
@@ -157,7 +154,11 @@ function animate() {
 
   //player jump animation
   if (player.velocity.y < 0) {
-    player.switchSprite("jump");
+    if (player.lastDirection === "right") {
+      player.switchSprite("jump");
+    } else {
+      player.switchSprite("jumpLeft");
+    }
   } else if (player.velocity.y > 0) {
     if (player.lastDirection === "right") {
       player.switchSprite("fall");
