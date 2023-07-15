@@ -73,6 +73,10 @@ const player = new Fighter({
       imageSrc: "./images/MedievalKing/Sprites/Attack1.png",
       framesMax: 4,
     },
+    takeHit: {
+      imageSrc: "./images/MedievalKing/Sprites/TakeHit.png",
+      framesMax: 4,
+    },
     idleLeft: {
       imageSrc: "./images/MedievalKing/Sprites/IdleLeft.png",
       framesMax: 8,
@@ -93,6 +97,10 @@ const player = new Fighter({
       imageSrc: "./images/MedievalKing/Sprites/Attack1Left.png",
       framesMax: 4,
     },
+    takeHitLeft: {
+      imageSrc: "./images/MedievalKing/Sprites/TakeHitLeft.png",
+      framesMax: 4,
+    },
   },
   lastDirection: "right",
 });
@@ -110,7 +118,7 @@ const enemy = new Fighter({
   },
   imageSrc: "./images/HeroKnight/Sprites/Idle.png",
   framesMax: 11,
-  framesHold: 5,
+  framesHold: 3,
   scale: 2.5,
   offset: { x: 155, y: 162 },
   attackBox: {
@@ -142,6 +150,10 @@ const enemy = new Fighter({
       imageSrc: "./images/HeroKnight/Sprites/Attack1.png",
       framesMax: 7,
     },
+    takeHit: {
+      imageSrc: "./images/HeroKnight/Sprites/TakeHit.png",
+      framesMax: 4,
+    },
     idleLeft: {
       imageSrc: "./images/HeroKnight/Sprites/IdleLeft.png",
       framesMax: 11,
@@ -161,6 +173,10 @@ const enemy = new Fighter({
     attack1Left: {
       imageSrc: "./images/HeroKnight/Sprites/Attack1Left.png",
       framesMax: 7,
+    },
+    takeHitLeft: {
+      imageSrc: "./images/HeroKnight/Sprites/TakeHitLeft.png",
+      framesMax: 4,
     },
   },
   lastDirection: "left",
@@ -282,7 +298,7 @@ function animate() {
     player.framesCurrent === 2
   ) {
     player.isAttacking = false;
-    enemy.health -= 20;
+    enemy.takeHit();
     document.getElementById("player-2-health-bar").style.width =
       enemy.health + "%";
   }
@@ -298,7 +314,7 @@ function animate() {
     enemy.isAttacking && enemy.framesCurrent === 4
   ) {
     enemy.isAttacking = false;
-    player.health -= 20;
+    player.takeHit();
     document.getElementById("player-1-health-bar").style.width =
       player.health + "%";
   }
