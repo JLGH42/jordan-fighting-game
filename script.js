@@ -77,6 +77,10 @@ const player = new Fighter({
       imageSrc: "./images/MedievalKing/Sprites/TakeHit.png",
       framesMax: 4,
     },
+    death: {
+      imageSrc: "./images/MedievalKing/Sprites/Death.png",
+      framesMax: 6,
+    },
     idleLeft: {
       imageSrc: "./images/MedievalKing/Sprites/IdleLeft.png",
       framesMax: 8,
@@ -100,6 +104,10 @@ const player = new Fighter({
     takeHitLeft: {
       imageSrc: "./images/MedievalKing/Sprites/TakeHitLeft.png",
       framesMax: 4,
+    },
+    deathLeft: {
+      imageSrc: "./images/MedievalKing/Sprites/DeathLeft.png",
+      framesMax: 6,
     },
   },
   lastDirection: "right",
@@ -154,6 +162,10 @@ const enemy = new Fighter({
       imageSrc: "./images/HeroKnight/Sprites/TakeHit.png",
       framesMax: 4,
     },
+    death: {
+      imageSrc: "./images/HeroKnight/Sprites/Death.png",
+      framesMax: 11,
+    },
     idleLeft: {
       imageSrc: "./images/HeroKnight/Sprites/IdleLeft.png",
       framesMax: 11,
@@ -177,6 +189,10 @@ const enemy = new Fighter({
     takeHitLeft: {
       imageSrc: "./images/HeroKnight/Sprites/TakeHitLeft.png",
       framesMax: 4,
+    },
+    deathLeft: {
+      imageSrc: "./images/HeroKnight/Sprites/DeathLeft.png",
+      framesMax: 11,
     },
   },
   lastDirection: "left",
@@ -286,7 +302,7 @@ function animate() {
       enemy.attackBox.offset.x = 75;
       enemy.switchSprite("fall");
     } else {
-      enemy.attackBox.offset.x = -d45;
+      enemy.attackBox.offset.x = -45;
       enemy.switchSprite("fallLeft");
     }
   }
