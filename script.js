@@ -100,10 +100,54 @@ const enemy = new Fighter({
     x: 0,
     y: 0,
   },
-  offset: {
-    x: -50,
-    y: 0,
+  imageSrc: "./images/HeroKnight/Sprites/Idle.png",
+  framesMax: 11,
+  framesHold: 5,
+  scale: 2.5,
+  offset: { x: 155, y: 162 },
+  sprites: {
+    idle: {
+      imageSrc: "./images/HeroKnight/Sprites/Idle.png",
+      framesMax: 11,
+    },
+    run: {
+      imageSrc: "./images/HeroKnight/Sprites/Run.png",
+      framesMax: 8,
+    },
+    jump: {
+      imageSrc: "./images/HeroKnight/Sprites/Jump.png",
+      framesMax: 3,
+    },
+    fall: {
+      imageSrc: "./images/HeroKnight/Sprites/Fall.png",
+      framesMax: 3,
+    },
+    attack1: {
+      imageSrc: "./images/HeroKnight/Sprites/Attack1.png",
+      framesMax: 7,
+    },
+    idleLeft: {
+      imageSrc: "./images/HeroKnight/Sprites/IdleLeft.png",
+      framesMax: 11,
+    },
+    runLeft: {
+      imageSrc: "./images/HeroKnight/Sprites/RunLeft.png",
+      framesMax: 8,
+    },
+    jumpLeft: {
+      imageSrc: "./images/HeroKnight/Sprites/JumpLeft.png",
+      framesMax: 3,
+    },
+    fallLeft: {
+      imageSrc: "./images/HeroKnight/Sprites/FallLeft.png",
+      framesMax: 3,
+    },
+    attack1Left: {
+      imageSrc: "./images/HeroKnight/Sprites/Attack1Left.png",
+      framesMax: 7,
+    },
   },
+  lastDirection: "left",
 });
 
 const keys = {
@@ -130,7 +174,7 @@ function animate() {
   background.update();
   shop.update();
   player.update();
-  // enemy.update();
+  enemy.update();
 
   player.velocity.x = 0;
   enemy.velocity.x = 0;
