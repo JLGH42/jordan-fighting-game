@@ -47,10 +47,10 @@ const player = new Fighter({
   attackBox: {
     offset: {
       x: 99,
-      y: 25
+      y: 25,
     },
     width: 122,
-    height: 50
+    height: 50,
   },
   sprites: {
     idle: {
@@ -116,10 +116,10 @@ const enemy = new Fighter({
   attackBox: {
     offset: {
       x: -45,
-      y: 0
+      y: 0,
     },
     width: 100,
-    height: 50
+    height: 50,
   },
   sprites: {
     idle: {
@@ -198,17 +198,21 @@ function animate() {
   //player movement
   if (keys.a.pressed && player.lastKey === "a") {
     player.velocity.x = -5;
+    player.attackBox.offset.x = -129;
     player.switchSprite("runLeft");
     player.lastDirection = "left";
   } else if (keys.d.pressed && player.lastKey === "d") {
     player.velocity.x = 5;
+    player.attackBox.offset.x = 99;
     player.switchSprite("run");
     player.lastDirection = "right";
   } else {
     if (player.lastDirection === "right") {
       player.switchSprite("idle");
+      player.attackBox.offset.x = 99;
     } else {
       player.switchSprite("idleLeft");
+      player.attackBox.offset.x = -129;
     }
   }
 
@@ -216,14 +220,18 @@ function animate() {
   if (player.velocity.y < 0) {
     if (player.lastDirection === "right") {
       player.switchSprite("jump");
+      player.attackBox.offset.x = 99;
     } else {
       player.switchSprite("jumpLeft");
+      player.attackBox.offset.x = -129;
     }
   } else if (player.velocity.y > 0) {
     if (player.lastDirection === "right") {
       player.switchSprite("fall");
+      player.attackBox.offset.x = 99;
     } else {
       player.switchSprite("fallLeft");
+      player.attackBox.offset.x = -129;
     }
   }
 
@@ -262,7 +270,8 @@ function animate() {
   //player attack collision
   if (
     rectangularCollision({ rectangle1: player, rectangle2: enemy }) &&
-    player.isAttacking  && player.framesCurrent === 2
+    player.isAttacking &&
+    player.framesCurrent === 2
   ) {
     player.isAttacking = false;
     enemy.health -= 20;
@@ -271,14 +280,14 @@ function animate() {
   }
 
   //player misses
-  if(player.isAttacking && player.framesCurrent === 2) {
+  if (player.isAttacking && player.framesCurrent === 2) {
     player.isAttacking = false;
   }
 
   //enemy attack collision
   if (
     rectangularCollision({ rectangle1: enemy, rectangle2: player }) &&
-    enemy.isAttacking 
+    enemy.isAttacking
   ) {
     enemy.isAttacking = false;
     player.health -= 20;
