@@ -150,12 +150,25 @@ class Fighter extends Sprite {
     }
   }
 
+  takeHit() {
+    this.health -= 20;
+    if (this.lastDirection === "right") {
+      this.switchSprite("takeHit");
+    } else if (this.lastDirection === "left") {
+      this.switchSprite("takeHitLeft");
+    }
+  }
+
   switchSprite(sprite) {
     if (
       (this.image === this.sprites.attack1.image &&
         this.framesCurrent < this.sprites.attack1.framesMax - 1) ||
       (this.image === this.sprites.attack1Left.image &&
-        this.framesCurrent < this.sprites.attack1Left.framesMax - 1)
+        this.framesCurrent < this.sprites.attack1Left.framesMax - 1) ||
+      (this.image === this.sprites.takeHit.image &&
+        this.framesCurrent < this.sprites.takeHit.framesMax - 1) ||
+      (this.image === this.sprites.takeHitLeft.image &&
+        this.framesCurrent < this.sprites.takeHitLeft.framesMax - 1)
     )
       return;
     switch (sprite) {
@@ -194,6 +207,13 @@ class Fighter extends Sprite {
           this.framesCurrent = 0;
           break;
         }
+      case "takeHit":
+        if (this.image !== this.sprites.takeHit.image) {
+          this.image = this.sprites.takeHit.image;
+          this.framesMax = this.sprites.takeHit.framesMax;
+          this.framesCurrent = 0;
+          break;
+        }
       case "idleLeft":
         if (this.image !== this.sprites.idleLeft.image) {
           this.image = this.sprites.idleLeft.image;
@@ -226,6 +246,13 @@ class Fighter extends Sprite {
         if (this.image !== this.sprites.attack1Left.image) {
           this.image = this.sprites.attack1Left.image;
           this.framesMax = this.sprites.attack1Left.framesMax;
+          this.framesCurrent = 0;
+          break;
+        }
+      case "takeHitLeft":
+        if (this.image !== this.sprites.takeHitLeft.image) {
+          this.image = this.sprites.takeHitLeft.image;
+          this.framesMax = this.sprites.takeHitLeft.framesMax;
           this.framesCurrent = 0;
           break;
         }
