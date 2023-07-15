@@ -75,7 +75,7 @@ class Fighter extends Sprite {
     offset,
     sprites,
     lastDirection,
-    attackBox = { offset: {}, width: undefined, height: undefined}
+    attackBox = { offset: {}, width: undefined, height: undefined },
   }) {
     super({
       imageSrc,
@@ -119,7 +119,13 @@ class Fighter extends Sprite {
     this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
     this.attackBox.position.y = this.position.y + this.attackBox.offset.y;
 
-    ctx.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height);
+    //drawing atk boxes
+    // ctx.fillRect(
+    //   this.attackBox.position.x,
+    //   this.attackBox.position.y,
+    //   this.attackBox.width,
+    //   this.attackBox.height
+    // );
 
     //velocity
     this.position.x += this.velocity.x;
@@ -139,7 +145,7 @@ class Fighter extends Sprite {
     this.isAttacking = true;
     if (this.lastDirection === "right") {
       this.switchSprite("attack1");
-    } else if(this.lastDirection === "left") {
+    } else if (this.lastDirection === "left") {
       this.switchSprite("attack1Left");
     }
   }
