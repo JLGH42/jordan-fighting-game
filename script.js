@@ -214,8 +214,33 @@ function animate() {
   //enemy movement
   if (keys.arrowR.pressed && enemy.lastKey === "ArrowRight") {
     enemy.velocity.x = 5;
+    enemy.switchSprite("run");
+    enemy.lastDirection = "right";
   } else if (keys.arrowL.pressed && enemy.lastKey === "ArrowLeft") {
     enemy.velocity.x = -5;
+    enemy.switchSprite("runLeft");
+    enemy.lastDirection = "left";
+  } else {
+    if (enemy.lastDirection === "right") {
+      enemy.switchSprite("idle");
+    } else {
+      enemy.switchSprite("idleLeft");
+    }
+  }
+
+  //enemy jump animation
+  if (enemy.velocity.y < 0) {
+    if (enemy.lastDirection === "right") {
+      enemy.switchSprite("jump");
+    } else {
+      enemy.switchSprite("jumpLeft");
+    }
+  } else if (enemy.velocity.y > 0) {
+    if (enemy.lastDirection === "right") {
+      enemy.switchSprite("fall");
+    } else {
+      enemy.switchSprite("fallLeft");
+    }
   }
 
   //player attack collision
