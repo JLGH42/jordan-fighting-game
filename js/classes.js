@@ -117,7 +117,7 @@ class Fighter extends Sprite {
     this.animateFrames();
 
     this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
-    this.attackBox.position.y = this.position.y;
+    this.attackBox.position.y = this.position.y + this.attackBox.offset.y;
 
     ctx.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height);
 
@@ -142,9 +142,6 @@ class Fighter extends Sprite {
     } else if(this.lastDirection === "left") {
       this.switchSprite("attack1Left");
     }
-    setTimeout(() => {
-      this.isAttacking = false;
-    }, 100);
   }
 
   switchSprite(sprite) {

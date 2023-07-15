@@ -46,10 +46,10 @@ const player = new Fighter({
   offset: { x: 155, y: 143 },
   attackBox: {
     offset: {
-      x: 0,
-      y: 0
+      x: 99,
+      y: 25
     },
-    width: 100,
+    width: 122,
     height: 50
   },
   sprites: {
@@ -115,7 +115,7 @@ const enemy = new Fighter({
   offset: { x: 155, y: 162 },
   attackBox: {
     offset: {
-      x: 0,
+      x: -45,
       y: 0
     },
     width: 100,
@@ -262,7 +262,7 @@ function animate() {
   //player attack collision
   if (
     rectangularCollision({ rectangle1: player, rectangle2: enemy }) &&
-    player.isAttacking
+    player.isAttacking  && player.framesCurrent === 2
   ) {
     player.isAttacking = false;
     enemy.health -= 20;
@@ -270,10 +270,15 @@ function animate() {
       enemy.health + "%";
   }
 
+  //player misses
+  if(player.isAttacking && player.framesCurrent === 2) {
+    player.isAttacking = false;
+  }
+
   //enemy attack collision
   if (
     rectangularCollision({ rectangle1: enemy, rectangle2: player }) &&
-    enemy.isAttacking
+    enemy.isAttacking 
   ) {
     enemy.isAttacking = false;
     player.health -= 20;
