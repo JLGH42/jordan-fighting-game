@@ -180,6 +180,41 @@ class Fighter extends Sprite {
           this.framesCurrent = 0;
           break;
         }
+      case "idleLeft":
+        if (this.image !== this.sprites.idleLeft.image) {
+          this.image = this.sprites.idleLeft.image;
+          this.framesMax = this.sprites.idleLeft.framesMax;
+          this.framesCurrent = 0;
+        }
+        break;
+      case "runLeft":
+        if (this.image !== this.sprites.runLeft.image) {
+          this.image = this.sprites.runLeft.image;
+          this.framesMax = this.sprites.runLeft.framesMax;
+          this.framesCurrent = 0;
+        }
+        break;
+      case "jumpLeft":
+        if (this.image !== this.sprites.jumpLeft.image) {
+          this.image = this.sprites.jumpLeft.image;
+          this.framesMax = this.sprites.jumpLeft.framesMax;
+          this.framesCurrent = 0;
+          break;
+        }
+      case "fallLeft":
+        if (this.image !== this.sprites.fallLeft.image) {
+          this.image = this.sprites.fallLeft.image;
+          this.framesMax = this.sprites.fallLeft.framesMax;
+          this.framesCurrent = 0;
+          break;
+        }
+      case "attack1Left":
+        if (this.image !== this.sprites.attack1Left.image) {
+          this.image = this.sprites.attack1Left.image;
+          this.framesMax = this.sprites.attack1Left.framesMax;
+          this.framesCurrent = 0;
+          break;
+        }
     }
   }
 }
