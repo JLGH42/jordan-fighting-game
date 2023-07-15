@@ -304,7 +304,7 @@ window.addEventListener("keydown", (e) => {
     case "ArrowUp":
       enemy.velocity.y = -20;
       break;
-    case "Shift":
+    case "l":
       enemy.attack();
       break;
   }
