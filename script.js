@@ -115,10 +115,10 @@ const enemy = new Fighter({
   offset: { x: 155, y: 162 },
   attackBox: {
     offset: {
-      x: -45,
-      y: 0,
+      x: 0,
+      y: 25,
     },
-    width: 100,
+    width: 110,
     height: 50,
   },
   sprites: {
@@ -238,16 +238,20 @@ function animate() {
   //enemy movement
   if (keys.arrowR.pressed && enemy.lastKey === "ArrowRight") {
     enemy.velocity.x = 5;
+    enemy.attackBox.offset.x = 75;
     enemy.switchSprite("run");
     enemy.lastDirection = "right";
   } else if (keys.arrowL.pressed && enemy.lastKey === "ArrowLeft") {
     enemy.velocity.x = -5;
+    enemy.attackBox.offset.x = -45;
     enemy.switchSprite("runLeft");
     enemy.lastDirection = "left";
   } else {
     if (enemy.lastDirection === "right") {
+      enemy.attackBox.offset.x = 75;
       enemy.switchSprite("idle");
     } else {
+      enemy.attackBox.offset.x = -45;
       enemy.switchSprite("idleLeft");
     }
   }
@@ -255,14 +259,18 @@ function animate() {
   //enemy jump animation
   if (enemy.velocity.y < 0) {
     if (enemy.lastDirection === "right") {
+      enemy.attackBox.offset.x = 75;
       enemy.switchSprite("jump");
     } else {
+      enemy.attackBox.offset.x = -45;
       enemy.switchSprite("jumpLeft");
     }
   } else if (enemy.velocity.y > 0) {
     if (enemy.lastDirection === "right") {
+      enemy.attackBox.offset.x = 75;
       enemy.switchSprite("fall");
     } else {
+      enemy.attackBox.offset.x = -d45;
       enemy.switchSprite("fallLeft");
     }
   }
@@ -287,12 +295,17 @@ function animate() {
   //enemy attack collision
   if (
     rectangularCollision({ rectangle1: enemy, rectangle2: player }) &&
-    enemy.isAttacking
+    enemy.isAttacking && enemy.framesCurrent === 4
   ) {
     enemy.isAttacking = false;
     player.health -= 20;
     document.getElementById("player-1-health-bar").style.width =
       player.health + "%";
+  }
+
+  //enemy misses
+  if (enemy.isAttacking && enemy.framesCurrent === 4) {
+    enemy.isAttacking = false;
   }
 
   //end game based on health
