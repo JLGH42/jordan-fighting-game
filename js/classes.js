@@ -123,6 +123,7 @@ class Fighter extends Sprite {
     //stopping object when it reaches the ground
     if (this.position.y + this.height + this.velocity.y >= canvas.height) {
       this.velocity.y = 0;
+      this.position.y = 426;
     }
     //gravity
     else {
@@ -156,6 +157,13 @@ class Fighter extends Sprite {
         if (this.image !== this.sprites.jump.image) {
           this.image = this.sprites.jump.image;
           this.framesMax = this.sprites.jump.framesMax;
+          this.framesCurrent = 0;
+          break;
+        }
+      case "fall":
+        if (this.image !== this.sprites.fall.image) {
+          this.image = this.sprites.fall.image;
+          this.framesMax = this.sprites.fall.framesMax;
           this.framesCurrent = 0;
           break;
         }
