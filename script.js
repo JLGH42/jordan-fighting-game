@@ -69,6 +69,26 @@ const player = new Fighter({
       imageSrc: "./images/MedievalKing/Sprites/Attack1.png",
       framesMax: 4,
     },
+    idleLeft: {
+      imageSrc: "./images/MedievalKing/Sprites/IdleLeft.png",
+      framesMax: 8,
+    },
+    runLeft: {
+      imageSrc: "./images/MedievalKing/Sprites/RunLeft.png",
+      framesMax: 8,
+    },
+    jumpLeft: {
+      imageSrc: "./images/MedievalKing/Sprites/JumpLeft.png",
+      framesMax: 2,
+    },
+    fallLeft: {
+      imageSrc: "./images/MedievalKing/Sprites/FallLeft.png",
+      framesMax: 2,
+    },
+    attack1Left: {
+      imageSrc: "./images/MedievalKing/Sprites/Attack1Left.png",
+      framesMax: 2,
+    },
   },
 });
 
@@ -121,19 +141,29 @@ function animate() {
   //player movement
   if (keys.a.pressed && player.lastKey === "a") {
     player.velocity.x = -5;
-    player.switchSprite("run");
+    player.switchSprite("runLeft");
+    player.lastDirection = "left";
   } else if (keys.d.pressed && player.lastKey === "d") {
     player.velocity.x = 5;
     player.switchSprite("run");
+    player.lastDirection = "right";
   } else {
-    player.switchSprite("idle");
+    if (player.lastDirection === "right") {
+      player.switchSprite("idle");
+    } else {
+      player.switchSprite("idleLeft");
+    }
   }
 
   //player jump animation
   if (player.velocity.y < 0) {
     player.switchSprite("jump");
   } else if (player.velocity.y > 0) {
-    player.switchSprite("fall");
+    if (player.lastDirection === "right") {
+      player.switchSprite("fall");
+    } else {
+      player.switchSprite("fallLeft");
+    }
   }
 
   //enemy movement
