@@ -44,6 +44,14 @@ const player = new Fighter({
   framesHold: 5,
   scale: 2.5,
   offset: { x: 155, y: 143 },
+  attackBox: {
+    offset: {
+      x: 0,
+      y: 0
+    },
+    width: 100,
+    height: 50
+  },
   sprites: {
     idle: {
       imageSrc: "./images/MedievalKing/Sprites/Idle.png",
@@ -105,6 +113,14 @@ const enemy = new Fighter({
   framesHold: 5,
   scale: 2.5,
   offset: { x: 155, y: 162 },
+  attackBox: {
+    offset: {
+      x: 0,
+      y: 0
+    },
+    width: 100,
+    height: 50
+  },
   sprites: {
     idle: {
       imageSrc: "./images/HeroKnight/Sprites/Idle.png",
