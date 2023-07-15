@@ -61,6 +61,10 @@ const player = new Fighter({
       imageSrc: "./images/MedievalKing/Sprites/Jump.png",
       framesMax: 2,
     },
+    fall: {
+      imageSrc: "./images/MedievalKing/Sprites/Fall.png",
+      framesMax: 2,
+    },
   },
 });
 
@@ -124,6 +128,8 @@ function animate() {
   //player jump animation
   if (player.velocity.y < 0) {
     player.switchSprite("jump");
+  } else if (player.velocity.y > 0) {
+    player.switchSprite("fall");
   }
 
   //enemy movement
