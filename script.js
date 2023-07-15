@@ -65,6 +65,10 @@ const player = new Fighter({
       imageSrc: "./images/MedievalKing/Sprites/Fall.png",
       framesMax: 2,
     },
+    attack1: {
+      imageSrc: "./images/MedievalKing/Sprites/Attack1.png",
+      framesMax: 4,
+    },
   },
 });
 
