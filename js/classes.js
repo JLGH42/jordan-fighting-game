@@ -74,6 +74,7 @@ class Fighter extends Sprite {
     framesHold,
     offset,
     sprites,
+    lastDirection,
   }) {
     super({
       imageSrc,
@@ -103,6 +104,7 @@ class Fighter extends Sprite {
     this.health = 100;
     this.isAttacking;
     this.sprites = sprites;
+    this.lastDirection = lastDirection;
 
     for (const sprite in this.sprites) {
       this.sprites[sprite].image = new Image();
@@ -131,8 +133,12 @@ class Fighter extends Sprite {
     }
   }
   attack() {
-    this.switchSprite("attack1");
     this.isAttacking = true;
+    if (this.lastDirection === "right") {
+      this.switchSprite("attack1");
+    } else if(this.lastDirection === "left") {
+      this.switchSprite("attack1Left");
+    }
     setTimeout(() => {
       this.isAttacking = false;
     }, 100);
@@ -140,8 +146,10 @@ class Fighter extends Sprite {
 
   switchSprite(sprite) {
     if (
-      this.image === this.sprites.attack1.image &&
-      this.framesCurrent < this.sprites.attack1.framesMax - 1
+      (this.image === this.sprites.attack1.image &&
+        this.framesCurrent < this.sprites.attack1.framesMax - 1) ||
+      (this.image === this.sprites.attack1Left.image &&
+        this.framesCurrent < this.sprites.attack1Left.framesMax - 1)
     )
       return;
     switch (sprite) {
