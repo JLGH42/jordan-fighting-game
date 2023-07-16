@@ -1,5 +1,5 @@
 # Project 2: 2D Fighting Game
-
+### [Play The Game](https://jlgh42.github.io/jordan-fighting-game)
 This is a 2D sprite fighting game inspired by the original Street Fighter and Mortal Kombat games. I built this using HTML5, CSS and vanilla JS.
 
 ## Instructions:
@@ -13,6 +13,8 @@ Player 2
 - Left and Right: Left Arrow & Right Arrow
 - Jump: Up Arrow
 - Attack: L (must be in lowercase)
+
+# [Documentation](https://docs.google.com/document/d/14ZmYpiO52fKlL5GO0hAJHtf4v5Jlzz8SWWbL2xLLfEU/edit?usp=sharing)
 
 ## Current Bugs:
 - Players go into a static idle state after dying while facing in the left direction
@@ -37,8 +39,3 @@ Player 2
 - CPU
 - Other Modes
 - Multiplayer (Online)
-
-I created a docx file that contains all of my technical reasoning behind creating the game, this is found under the /documentation folder.
-
-### Play the Game: https://jlgh42.github.io/jordan-fighting-game
-
