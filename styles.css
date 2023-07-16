@@ -82,6 +82,7 @@ label {
 }
 
 .fa-democrat {
+  transform: rotateY(180deg);
   color: #c57a10;
 }
 
