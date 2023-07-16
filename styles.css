@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+body {
+  background: rgb(45, 45, 45);
+}
+
 .container {
   position: relative;
   display: inline-block;
@@ -67,3 +71,17 @@
   justify-content: center;
   inset: 0;
 }
+
+.instructions {
+  margin-left: 50px;
+  color: #fff;
+}
+
+label {
+  font-weight: 600;
+}
+
+.fa-democrat {
+  color: #c57a10;
+}
+
