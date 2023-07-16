@@ -6,6 +6,13 @@
     <script defer src="js/classes.js"></script>
     <script defer src="js/utils.js"></script>
     <script defer src="/script.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link rel="stylesheet" href="/styles.css" />
     <title>Fighting Game</title>
   </head>
@@ -24,6 +31,23 @@
       </div>
       <div id="condition"></div>
       <canvas></canvas>
+    </div>
+    <div class="instructions">
+      <h1>How To Play:</h1>
+      <label for="p1-controls">Player 1</label>
+      <ul id="p1-controls">
+        <li>Left and Right: <em>a</em> & <em>d</em> (must be in lower case)</li>
+        <li>Jump: <em>w</em> (must be in lower case)</li>
+        <li>Attack: <em>spacebar</em></li>
+      </ul>
+      <label for="p2-controls">Player 2</label>
+      <ul id="p2-controls">
+        <li>Left and Right: <em>Left Arrow</em> & <em>Right Arrow</em></li>
+        <li>Jump: <em>Up Arrow</em></li>
+        <li>Attack: <em>l</em> (must be in lower case)</li>
+      </ul>
+      <h2>Win Condition</h2>
+      <p>BEAT THE OPPONENT'S <i class="fa fa-solid fa-democrat"></i></p>
     </div>
   </body>
 </html>
